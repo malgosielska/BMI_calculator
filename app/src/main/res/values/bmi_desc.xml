@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="underweight_description">Underweight individuals have a BMI below 18.5. This category indicates that a persons weight is insufficient for their height, which may be associated with health risks such as malnutrition and a weakened immune system.</string>
+    <string name="normal_weight_description">A BMI between 18.5 and 24.99 is considered a normal weight. This range is associated with a balanced weight-to-height ratio, typically reflecting good overall health and a lower risk of weight-related health issues.</string>
+    <string name="overweight_description">Overweight individuals have a BMI between 25 and 29.99. This category indicates an excess of body weight relative to height, potentially leading to health concerns like heart disease, diabetes, and joint problems.</string>
+    <string name="obesity_description">Obesity is defined as having a BMI of 30 or higher. It signifies a significant excess of body fat, which can increase the risk of severe health conditions, including heart disease, type 2 diabetes, and certain types of cancer.</string>
+</resources>

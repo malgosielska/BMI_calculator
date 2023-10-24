@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="normal_weight">#33A738</color>
-    <color name="under_weight">#0523C8</color>
-    <color name="over_weight">#FF5621</color>
-    <color name="obesity">#FF0000</color>
+    <color name="normal_weight">#A4C5A6</color>
+    <color name="under_weight">#A9B8FD</color>
+    <color name="over_weight">#F4C4B5</color>
+    <color name="obesity">#FDA6A6</color>
     <color name="card_field">#D6C0FD</color>
 </resources>
