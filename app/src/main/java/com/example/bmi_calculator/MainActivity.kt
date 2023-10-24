@@ -1,11 +1,14 @@
 package com.example.bmi_calculator
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,42 +46,48 @@ class MainActivity : AppCompatActivity() {
             val description = findViewById<TextView>(R.id.descTV)
 
             result.text = "Incorrect! "
-            description.text = "Enter weight"
+            description.text = "Enter height"
             correct = false
         }
         return correct
     }
 
-    private fun displayResult(bmi: Float){
+    private fun getResult(bmi: Float): String {
+        return when {
+            bmi < 18.5 -> "Underweight"
+            bmi in 18.5..24.99 -> "Normal weight"
+            bmi in 24.99..29.99 -> "Overweight"
+            else -> "Obesity"
+        }
+    }
+
+    private fun displayResult(bmi: Float) {
         val result = findViewById<TextView>(R.id.resultTV)
-        val description = findViewById<TextView>(R.id.descTV)
+        val type = findViewById<TextView>(R.id.descTV)
+        val cardViewResult = findViewById<CardView>(R.id.resultCV)
 
         result.text = bmi.toString()
 
-        var resultText = ""
-        var color = 0
+        val color = getColor(bmi)
+        val typeText = getResult(bmi)
 
-        when {
-            bmi < 18.5 -> {
-                resultText = "Underweight"
-                color = R.color.under_weight
-            }
-            bmi in 18.5..24.99 -> {
-                resultText = "Normal weight"
-                color = R.color.normal_weight
-            }
-            bmi in 24.99..29.99 -> {
-                resultText = "Overweight"
-                color = R.color.over_weight
-            }
-            bmi > 29.99 -> {
-                resultText = "Obesity"
-                color = R.color.obesity
-            }
+        cardViewResult.setCardBackgroundColor(ContextCompat.getColor(this, color))
+        type.text = typeText
+
+        cardViewResult.setOnClickListener {
+            val intent = Intent(this, DescriptionActivity::class.java)
+            intent.putExtra("bmi", result.text)
+            intent.putExtra("type", type.text)
+            startActivity(intent)
         }
+    }
+}
 
-        description.setTextColor(ContextCompat.getColor(this, color))
-        description.text = resultText
-
+fun getColor(bmi: Float): Int {
+    return when {
+        bmi < 18.5 -> R.color.under_weight
+        bmi in 18.5..24.99 -> R.color.normal_weight
+        bmi in 24.99..29.99 -> R.color.over_weight
+        else -> R.color.obesity
     }
 }
