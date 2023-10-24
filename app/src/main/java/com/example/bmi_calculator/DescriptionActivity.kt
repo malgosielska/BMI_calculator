@@ -24,7 +24,6 @@ class DescriptionActivity : AppCompatActivity() {
         calculateButton.setOnClickListener {
             finish()
         }
-
     }
 
     private fun display(bmi: String, type: String){
@@ -35,9 +34,31 @@ class DescriptionActivity : AppCompatActivity() {
 
         bmiText.text = bmi
         typeText.text = type
+        descriptionTextView.text = getDescription(type)
         val color = getColor(bmi.toFloat())
         descriptionCardView.setCardBackgroundColor(ContextCompat.getColor(this, color))
     }
+
+    private fun getDescription(type: String): String{
+        var desc = ""
+        when (type) {
+            getString(R.string.underweight) -> {
+                desc = getString(R.string.underweight_description)
+            }
+            getString(R.string.overweight) -> {
+                desc = getString(R.string.overweight_description)
+            }
+            getString(R.string.normal_weight) -> {
+                desc = getString(R.string.normal_weight_description)
+            }
+            getString(R.string.obesity) -> {
+                desc = getString(R.string.obesity_description)
+            }
+        }
+        return desc
+    }
+
+
 
 
 

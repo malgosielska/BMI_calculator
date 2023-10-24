@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="underweight_description">Underweight individuals have a BMI below 18.5. This category indicates that a persons weight is insufficient for their height, which may be associated with health risks such as malnutrition and a weakened immune system.</string>
-    <string name="normal_weight_description">A BMI between 18.5 and 24.99 is considered a normal weight. This range is associated with a balanced weight-to-height ratio, typically reflecting good overall health and a lower risk of weight-related health issues.</string>
-    <string name="overweight_description">Overweight individuals have a BMI between 25 and 29.99. This category indicates an excess of body weight relative to height, potentially leading to health concerns like heart disease, diabetes, and joint problems.</string>
-    <string name="obesity_description">Obesity is defined as having a BMI of 30 or higher. It signifies a significant excess of body fat, which can increase the risk of severe health conditions, including heart disease, type 2 diabetes, and certain types of cancer.</string>
+    <string name="underweight_description">Underweight individuals have a BMI below 18.5. This category indicates that a persons weight is insufficient for their height, which may lead to health risks such as nutrient deficiencies, weakened bones, and a compromised immune system. It is important for underweight individuals to focus on balanced nutrition and engage in strength-building exercises to promote healthy weight gain.</string>
+
+    <string name="normal_weight_description">A BMI between 18.5 and 24.99 is considered a normal weight. Congratulations! This range is associated with a balanced weight-to-height ratio, indicating good overall health. Maintain a balanced diet, engage in regular physical activity, and continue your healthy lifestyle choices to support your well-being.</string>
+
+    <string name="overweight_description">Overweight individuals have a BMI between 25 and 29.99. This category indicates an excess of body weight relative to height, potentially leading to health concerns like heart disease, diabetes, and joint problems. It is advisable to focus on a balanced diet with portion control and engage in regular physical activity to achieve a healthy weight range.</string>
+
+    <string name="obesity_description">Obesity is defined as having a BMI of 30 or higher. This signifies a significant excess of body fat, which can increase the risk of severe health conditions, including heart disease, type 2 diabetes, and certain types of cancer. It is crucial to consult a healthcare professional for personalized guidance on weight management, which may include a tailored diet, exercise plan, and potential medical interventions.</string>
 </resources>

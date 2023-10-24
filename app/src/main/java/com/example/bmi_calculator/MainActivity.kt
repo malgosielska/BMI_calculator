@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun getResult(bmi: Float): String {
         return when {
-            bmi < 18.5 -> "Underweight"
-            bmi in 18.5..24.99 -> "Normal weight"
-            bmi in 24.99..29.99 -> "Overweight"
-            else -> "Obesity"
+            bmi < 18.5 -> getString(R.string.underweight)
+            bmi in 18.5..24.99 -> getString(R.string.normal_weight)
+            bmi in 24.99..29.99 -> getString(R.string.overweight)
+            else -> getString(R.string.obesity)
         }
     }
 
