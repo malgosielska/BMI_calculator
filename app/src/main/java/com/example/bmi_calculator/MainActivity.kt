@@ -1,6 +1,7 @@
 package com.example.bmi_calculator
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,10 +12,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val bmiHistory = BMIHistory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         calculateBmi()
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu,menu)
@@ -50,12 +55,13 @@ class MainActivity : AppCompatActivity() {
             if (checkInputs(weight, height)) {
                 var bmi = weight.toFloat()/((height.toFloat()/100)*(height.toFloat()/100))
                 bmi = String.format("%.2f", bmi).toFloat()
+                val date = getCurrentDate()
+                val bmiResult = BMIResult(date, bmi)
+                bmiHistory.addResult(bmiResult)
                 displayResult(bmi)
             }
         }
     }
-
-
 
     private fun checkInputs(weight: String, height: String): Boolean {
         var correct = true
@@ -116,4 +122,10 @@ fun getColor(bmi: Float): Int {
         bmi in 24.99..29.99 -> R.color.over_weight
         else -> R.color.obesity
     }
+}
+
+fun getCurrentDate(): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val currentDate = Date()
+    return sdf.format(currentDate)
 }
