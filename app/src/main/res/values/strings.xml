@@ -7,4 +7,8 @@
     <string name="kg">kg</string>
     <string name="calculate_bmi">Calculate BMI</string>
     <string name="your_result">Your result:</string>
+    <string name="incorrect">Incorrect!</string>
+    <string name="enter_weight">Enter weight</string>
+    <string name="enter_height">Enter height</string>
+    <string name="return_text">Return</string>
 </resources>

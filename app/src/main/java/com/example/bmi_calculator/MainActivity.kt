@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        calculate_bmi()
+    }
+
+    private fun calculate_bmi() {
         val givenWeight = findViewById<EditText>(R.id.weightET)
         val givenHeight = findViewById<EditText>(R.id.heightET)
         val calculateButton = findViewById<Button>(R.id.button)
@@ -37,16 +41,16 @@ class MainActivity : AppCompatActivity() {
             val result = findViewById<TextView>(R.id.resultTV)
             val description = findViewById<TextView>(R.id.descTV)
 
-            result.text = "Incorrect! "
-            description.text = "Enter weight"
+            result.text = getString(R.string.incorrect)
+            description.text = getString(R.string.enter_weight)
             correct = false
         }
         if (height.isEmpty()){
             val result = findViewById<TextView>(R.id.resultTV)
             val description = findViewById<TextView>(R.id.descTV)
 
-            result.text = "Incorrect! "
-            description.text = "Enter height"
+            result.text = getString(R.string.incorrect)
+            description.text = getString(R.string.enter_height)
             correct = false
         }
         return correct

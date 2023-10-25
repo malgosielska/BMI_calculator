@@ -10,7 +10,7 @@
         android:id="@+id/returnB"
         android:layout_width="131dp"
         android:layout_height="50dp"
-        android:text="Return"
+        android:text="@string/return_text"
         android:textColorLink="#6750A3"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

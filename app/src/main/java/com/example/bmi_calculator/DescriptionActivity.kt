@@ -58,9 +58,4 @@ class DescriptionActivity : AppCompatActivity() {
         return desc
     }
 
-
-
-
-
-
 }
