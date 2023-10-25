@@ -11,4 +11,6 @@
     <string name="enter_weight">Enter weight</string>
     <string name="enter_height">Enter height</string>
     <string name="return_text">Return</string>
+    <string name="metric">Metric</string>
+    <string name="history">History</string>
 </resources>

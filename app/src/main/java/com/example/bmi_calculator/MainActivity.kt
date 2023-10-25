@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,19 +15,30 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        calculateBmi()
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        calculate_bmi()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.history -> {
+                val intent = Intent(this, HistoryActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            // Dodaj inne obsługi zdarzeń, jeśli potrzebujesz
+            else -> super.onOptionsItemSelected(item)
+        }
     }
-
-    private fun calculate_bmi() {
+    private fun calculateBmi() {
         val givenWeight = findViewById<EditText>(R.id.weightET)
         val givenHeight = findViewById<EditText>(R.id.heightET)
         val calculateButton = findViewById<Button>(R.id.button)
