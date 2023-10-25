@@ -51,7 +51,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.62"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="@string/zero" />
 
             <TextView
                 android:id="@+id/cmTV"
@@ -104,7 +105,7 @@
                 android:layout_width="166dp"
                 android:layout_height="48dp"
                 android:ems="10"
-                android:hint="0.0"
+                android:hint="@string/zero"
                 android:inputType="numberDecimal"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -112,7 +113,8 @@
                 app:layout_constraintHorizontal_bias="0.625"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.49" />
+                app:layout_constraintVertical_bias="0.49"
+                android:autofillHints="@string/zero" />
 
             <TextView
                 android:id="@+id/kgTV"

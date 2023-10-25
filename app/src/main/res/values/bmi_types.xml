@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="underweight">Underweight</string>
+    <string name="overweight">Overweight</string>
+    <string name="normal_weight">Normal weight</string>
+    <string name="obesity">Obesity</string>
+</resources>
