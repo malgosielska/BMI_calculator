@@ -1,6 +1,8 @@
 package com.example.bmi_calculator
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.Menu
@@ -12,13 +14,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
 import java.util.Date
 import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
 
-    private val bmiHistory = BMIHistory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            // Dodaj inne obsługi zdarzeń, jeśli potrzebujesz
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -56,8 +58,9 @@ class MainActivity : AppCompatActivity() {
                 var bmi = weight.toFloat()/((height.toFloat()/100)*(height.toFloat()/100))
                 bmi = String.format("%.2f", bmi).toFloat()
                 val date = getCurrentDate()
-                val bmiResult = BMIResult(date, bmi)
-                bmiHistory.addResult(bmiResult)
+                val resultString = "DATE: $date     BMI VALUE: $bmi\n"
+                saveToFile(resultString)
+
                 displayResult(bmi)
             }
         }
@@ -111,6 +114,20 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("bmi", result.text)
             intent.putExtra("type", type.text)
             startActivity(intent)
+        }
+    }
+
+    private fun saveToFile(bmi: String) {
+        val file = "bmi_results.txt"
+        val fileOutputStream: FileOutputStream
+        try {
+            fileOutputStream = openFileOutput(file, Context.MODE_APPEND)
+            fileOutputStream.write(bmi.toByteArray())
+            fileOutputStream.close()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: Exception){
+            e.printStackTrace()
         }
     }
 }
