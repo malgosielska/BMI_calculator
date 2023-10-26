@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
         val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
 
         if (metric == getString(R.string.lb_and_ft)){
-            heightValueTV.text = getString(R.string.lb)
-            weightValueTV.text = getString(R.string.ft)
+            heightValueTV.text = getString(R.string.ft)
+            weightValueTV.text = getString(R.string.lb)
         } else {
             heightValueTV.text = getString(R.string.cm)
             weightValueTV.text = getString(R.string.kg)
