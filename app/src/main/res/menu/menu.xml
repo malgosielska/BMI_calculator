@@ -7,7 +7,18 @@
     <item android:id="@+id/metric"
         android:icon="@drawable/baseline_square_foot_24"
         android:title="@string/metric"
-        app:showAsAction="never"/>
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:id="@+id/menu_kg"
+                android:title="@string/kg_and_cm" />
+
+            <item
+                android:id="@+id/menu_pounds"
+                android:title="@string/lb_and_ft" />
+        </menu>
+    </item>
 
     <item android:id="@+id/history"
         android:icon="@drawable/baseline_history_24"

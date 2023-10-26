@@ -2,7 +2,6 @@ package com.example.bmi_calculator
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.Menu
@@ -21,7 +20,6 @@ import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +40,40 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.menu_kg -> {
+                //metric = getString(R.string.kg_and_cm)
+                changeMetricView(getString(R.string.kg_and_cm))
+                true
+            }
+            R.id.menu_pounds -> {
+                //metric = getString(R.string.kg_and_cm)
+                changeMetricView(getString(R.string.lb_and_ft))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun changeMetricView(metric: String) {
+        val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
+        val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
+
+        if (metric == getString(R.string.lb_and_ft)){
+            heightValueTV.text = getString(R.string.lb)
+            weightValueTV.text = getString(R.string.ft)
+        } else {
+            heightValueTV.text = getString(R.string.cm)
+            weightValueTV.text = getString(R.string.kg)
+        }
+    }
+
     private fun calculateBmi() {
         val givenWeight = findViewById<EditText>(R.id.weightET)
         val givenHeight = findViewById<EditText>(R.id.heightET)
         val calculateButton = findViewById<Button>(R.id.button)
+        val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
+
+        val currentMetric = heightValueTV.text
 
         calculateButton.setOnClickListener {
             val weight = givenWeight.text.toString()
@@ -56,6 +81,9 @@ class MainActivity : AppCompatActivity() {
 
             if (checkInputs(weight, height)) {
                 var bmi = weight.toFloat()/((height.toFloat()/100)*(height.toFloat()/100))
+                if (currentMetric == getString(R.string.ft)) {
+                    bmi *= 703
+                }
                 bmi = String.format("%.2f", bmi).toFloat()
                 val date = getCurrentDate()
                 val resultString = "DATE: $date     BMI VALUE: $bmi\n"

@@ -55,7 +55,7 @@
                 android:autofillHints="@string/zero" />
 
             <TextView
-                android:id="@+id/cmTV"
+                android:id="@+id/heightValueTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cm"
@@ -117,7 +117,7 @@
                 android:autofillHints="@string/zero" />
 
             <TextView
-                android:id="@+id/kgTV"
+                android:id="@+id/weightValueTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kg"
