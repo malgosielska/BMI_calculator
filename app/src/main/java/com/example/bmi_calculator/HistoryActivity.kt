@@ -45,6 +45,7 @@ class HistoryActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        lines.reverse()
         return lines
     }
 
