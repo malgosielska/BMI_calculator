@@ -24,7 +24,8 @@ class HistoryActivity : AppCompatActivity() {
 
     }
 
-    private fun readFile() : List<String> {
+    // todo to other class
+    private fun readFile(): List<String> {
         val fileInputStream: FileInputStream
         val lines = mutableListOf<String>()
 
@@ -37,14 +38,12 @@ class HistoryActivity : AppCompatActivity() {
             while (bufferedReader.readLine().also { text = it } != null) {
                 lines.add(text ?: "")
             }
-
             fileInputStream.close()
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
-
         lines.reverse()
         return lines
     }

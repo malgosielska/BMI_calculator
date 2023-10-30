@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.bmi_calculator.MainActivity">
 
-    <item android:id="@+id/metric"
+    <item
+        android:id="@+id/metric"
         android:icon="@drawable/baseline_square_foot_24"
         android:title="@string/metric"
         app:showAsAction="never">
@@ -20,9 +21,14 @@
         </menu>
     </item>
 
-    <item android:id="@+id/history"
+    <item
+        android:id="@+id/history"
         android:icon="@drawable/baseline_history_24"
         android:title="@string/history"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about_me"
+        android:title="@string/about_me"
+        app:showAsAction="never" />
 
 </menu>

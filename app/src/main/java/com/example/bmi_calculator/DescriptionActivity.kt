@@ -12,21 +12,14 @@ class DescriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_description)
 
-        // Pobieramy przekazane dane
         val bmi = intent.getStringExtra("bmi")
         val type = intent.getStringExtra("type")
         if (bmi != null && type != null) {
             display(bmi, type)
         }
-
-        val calculateButton = findViewById<Button>(R.id.returnB)
-
-        calculateButton.setOnClickListener {
-            finish()
-        }
     }
 
-    private fun display(bmi: String, type: String){
+    private fun display(bmi: String, type: String) {
         val bmiText = findViewById<TextView>(R.id.bmiScoreTV)
         val typeText = findViewById<TextView>(R.id.typeTV)
         val descriptionCardView = findViewById<CardView>(R.id.descriptionCV)
@@ -39,18 +32,21 @@ class DescriptionActivity : AppCompatActivity() {
         descriptionCardView.setCardBackgroundColor(ContextCompat.getColor(this, color))
     }
 
-    private fun getDescription(type: String): String{
+    private fun getDescription(type: String): String {
         var desc = ""
         when (type) {
             getString(R.string.underweight) -> {
                 desc = getString(R.string.underweight_description)
             }
+
             getString(R.string.overweight) -> {
                 desc = getString(R.string.overweight_description)
             }
+
             getString(R.string.normal_weight) -> {
                 desc = getString(R.string.normal_weight_description)
             }
+
             getString(R.string.obesity) -> {
                 desc = getString(R.string.obesity_description)
             }

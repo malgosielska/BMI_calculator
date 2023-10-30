@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DescriptionActivity">
 
-    <Button
-        android:id="@+id/returnB"
-        android:layout_width="131dp"
-        android:layout_height="50dp"
-        android:text="@string/return_text"
-        android:textColorLink="#6750A3"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/descriptionCV"
         android:layout_width="412dp"

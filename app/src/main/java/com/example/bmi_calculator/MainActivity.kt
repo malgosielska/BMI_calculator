@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu,menu)
+        inflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
@@ -40,16 +41,24 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
             R.id.menu_kg -> {
-                //metric = getString(R.string.kg_and_cm)
                 changeMetricView(getString(R.string.kg_and_cm))
                 true
             }
+
             R.id.menu_pounds -> {
-                //metric = getString(R.string.kg_and_cm)
                 changeMetricView(getString(R.string.lb_and_ft))
                 true
             }
+
+            R.id.about_me -> {
+                val intent = Intent(this, AboutMeActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -58,7 +67,13 @@ class MainActivity : AppCompatActivity() {
         val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
         val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
 
-        if (metric == getString(R.string.lb_and_ft)){
+        val givenWeight = findViewById<EditText>(R.id.weightET)
+        val givenHeight = findViewById<EditText>(R.id.heightET)
+
+        givenWeight.setText("")
+        givenHeight.setText("")
+
+        if (metric == getString(R.string.lb_and_ft)) {
             heightValueTV.text = getString(R.string.ft)
             weightValueTV.text = getString(R.string.lb)
         } else {
@@ -80,7 +95,8 @@ class MainActivity : AppCompatActivity() {
             val height = givenHeight.text.toString()
 
             if (checkInputs(weight, height)) {
-                var bmi = weight.toFloat()/((height.toFloat()/100)*(height.toFloat()/100))
+                // todo this should be placed in another Class - it is more about logic
+                var bmi = weight.toFloat() / ((height.toFloat() / 100) * (height.toFloat() / 100))
                 if (currentMetric == getString(R.string.ft)) {
                     bmi *= 703
                 }
@@ -94,9 +110,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // todo this also should be moved to other class
     private fun checkInputs(weight: String, height: String): Boolean {
         var correct = true
-        if (weight.isEmpty()){
+        if (weight.isEmpty()) {
             val result = findViewById<TextView>(R.id.resultTV)
             val description = findViewById<TextView>(R.id.descTV)
 
@@ -104,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             description.text = getString(R.string.enter_weight)
             correct = false
         }
-        if (height.isEmpty()){
+        if (height.isEmpty()) {
             val result = findViewById<TextView>(R.id.resultTV)
             val description = findViewById<TextView>(R.id.descTV)
 
@@ -115,6 +132,7 @@ class MainActivity : AppCompatActivity() {
         return correct
     }
 
+    // todo to other class
     private fun getResult(bmi: Float): String {
         return when {
             bmi < 18.5 -> getString(R.string.underweight)
@@ -145,6 +163,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // todo to other class
     private fun saveToFile(bmi: String) {
         val file = "bmi_results.txt"
         val fileOutputStream: FileOutputStream
@@ -154,12 +173,13 @@ class MainActivity : AppCompatActivity() {
             fileOutputStream.close()
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 }
 
+// todo to other class
 fun getColor(bmi: Float): Int {
     return when {
         bmi < 18.5 -> R.color.under_weight
@@ -169,6 +189,7 @@ fun getColor(bmi: Float): Int {
     }
 }
 
+// todo to other class
 fun getCurrentDate(): String {
     val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     val currentDate = Date()
