@@ -15,15 +15,19 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.util.Date
 import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
+    private var currentColor: Int = R.color.light_violet
+    private var currentMetric: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        currentMetric = getString(R.string.kg_and_cm)
 
         calculateBmi()
     }
@@ -43,12 +47,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu_kg -> {
-                changeMetricView(getString(R.string.kg_and_cm))
+                currentMetric = getString(R.string.kg_and_cm)
+                changeMetricView()
                 true
             }
 
             R.id.menu_pounds -> {
-                changeMetricView(getString(R.string.lb_and_ft))
+                currentMetric = getString(R.string.lb_and_ft)
+                changeMetricView()
                 true
             }
 
@@ -58,12 +64,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
-
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun changeMetricView(metric: String) {
+    private fun changeMetricView() {
         val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
         val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
 
@@ -73,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         givenWeight.setText("")
         givenHeight.setText("")
 
-        if (metric == getString(R.string.lb_and_ft)) {
+        if (currentMetric == getString(R.string.lb_and_ft)) {
             heightValueTV.text = getString(R.string.ft)
             weightValueTV.text = getString(R.string.lb)
         } else {
@@ -87,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         val givenHeight = findViewById<EditText>(R.id.heightET)
         val calculateButton = findViewById<Button>(R.id.button)
         val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
+        val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
 
         val currentMetric = heightValueTV.text
 
@@ -102,9 +108,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 bmi = String.format("%.2f", bmi).toFloat()
                 val date = getCurrentDate()
-                val resultString = "DATE: $date     BMI VALUE: $bmi\n"
-                saveToFile(resultString)
-
+                saveToFile(bmi, "$weight ${weightValueTV.text}","$height ${heightValueTV.text}", date )
                 displayResult(bmi)
             }
         }
@@ -149,10 +153,10 @@ class MainActivity : AppCompatActivity() {
 
         result.text = bmi.toString()
 
-        val color = getColor(bmi)
+        currentColor = getColor(bmi)
         val typeText = getResult(bmi)
 
-        cardViewResult.setCardBackgroundColor(ContextCompat.getColor(this, color))
+        cardViewResult.setCardBackgroundColor(ContextCompat.getColor(this, currentColor))
         type.text = typeText
 
         cardViewResult.setOnClickListener {
@@ -164,12 +168,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     // todo to other class
-    private fun saveToFile(bmi: String) {
-        val file = "bmi_results.txt"
+    private fun saveToFile(bmi: Float, weight: String, height: String, date: String) {
+        val file = "history.txt"
         val fileOutputStream: FileOutputStream
         try {
             fileOutputStream = openFileOutput(file, Context.MODE_APPEND)
-            fileOutputStream.write(bmi.toByteArray())
+            val lineToSave = "bmi: $bmi, weight: $weight, height: $height, date: $date \n"
+            fileOutputStream.write(lineToSave.toByteArray())
             fileOutputStream.close()
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
@@ -195,3 +200,6 @@ fun getCurrentDate(): String {
     val currentDate = Date()
     return sdf.format(currentDate)
 }
+
+
+

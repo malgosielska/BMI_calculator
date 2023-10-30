@@ -18,7 +18,7 @@ class HistoryActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.historyLV)
 
         val listData = readFile()
-
+        // inaczej to wyswietlac trzeba
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listData)
         listView.adapter = adapter
 
@@ -30,7 +30,7 @@ class HistoryActivity : AppCompatActivity() {
         val lines = mutableListOf<String>()
 
         try {
-            fileInputStream = openFileInput("bmi_results.txt")
+            fileInputStream = openFileInput("history.txt")
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
             var text: String?
@@ -44,8 +44,13 @@ class HistoryActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        // todo do osobnej metody
         lines.reverse()
-        return lines
+        return if (lines.size >= 10) {
+            lines.subList(0, 10)
+        } else {
+            lines
+        }
     }
 
 }
