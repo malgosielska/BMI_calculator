@@ -1,7 +1,9 @@
 package com.example.bmi_calculator
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.Menu
@@ -15,7 +17,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
-import java.io.InputStream
+import java.io.IOException
 import java.util.Date
 import java.util.Locale
 
@@ -146,6 +148,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun displayResult(bmi: Float) {
         val result = findViewById<TextView>(R.id.resultTV)
         val type = findViewById<TextView>(R.id.descTV)
@@ -153,10 +156,10 @@ class MainActivity : AppCompatActivity() {
 
         result.text = bmi.toString()
 
-        currentColor = getColor(bmi)
+        currentColor = getColor(this, bmi)
         val typeText = getResult(bmi)
 
-        cardViewResult.setCardBackgroundColor(ContextCompat.getColor(this, currentColor))
+        cardViewResult.setCardBackgroundColor(currentColor)
         type.text = typeText
 
         cardViewResult.setOnClickListener {
@@ -173,7 +176,7 @@ class MainActivity : AppCompatActivity() {
         val fileOutputStream: FileOutputStream
         try {
             fileOutputStream = openFileOutput(file, Context.MODE_APPEND)
-            val lineToSave = "bmi: $bmi, weight: $weight, height: $height, date: $date \n"
+            val lineToSave = "bmi: $bmi,weight: $weight,height: $height,date: $date \n"
             fileOutputStream.write(lineToSave.toByteArray())
             fileOutputStream.close()
         } catch (e: FileNotFoundException) {
@@ -182,15 +185,16 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 }
 
 // todo to other class
-fun getColor(bmi: Float): Int {
+fun getColor(context: Context, bmi: Float): Int {
     return when {
-        bmi < 18.5 -> R.color.under_weight
-        bmi in 18.5..24.99 -> R.color.normal_weight
-        bmi in 24.99..29.99 -> R.color.over_weight
-        else -> R.color.obesity
+        bmi < 18.5 -> ContextCompat.getColor(context, R.color.under_weight)
+        bmi in 18.5..24.99 -> ContextCompat.getColor(context, R.color.normal_weight)
+        bmi in 24.99..29.99 -> ContextCompat.getColor(context, R.color.over_weight)
+        else -> ContextCompat.getColor(context, R.color.obesity)
     }
 }
 
@@ -200,6 +204,5 @@ fun getCurrentDate(): String {
     val currentDate = Date()
     return sdf.format(currentDate)
 }
-
 
 

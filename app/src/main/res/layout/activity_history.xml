@@ -10,13 +10,16 @@
         android:id="@+id/historyLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:layout_marginTop="12dp"
         android:divider="@color/white"
         android:dividerHeight="20.0sp"
         android:scrollbarSize="10dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

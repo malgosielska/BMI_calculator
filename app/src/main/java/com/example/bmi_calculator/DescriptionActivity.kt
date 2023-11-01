@@ -28,8 +28,8 @@ class DescriptionActivity : AppCompatActivity() {
         bmiText.text = bmi
         typeText.text = type
         descriptionTextView.text = getDescription(type)
-        val color = getColor(bmi.toFloat())
-        descriptionCardView.setCardBackgroundColor(ContextCompat.getColor(this, color))
+        val color = getColor(this, bmi.toFloat())
+        descriptionCardView.setCardBackgroundColor(color)
     }
 
     private fun getDescription(type: String): String {

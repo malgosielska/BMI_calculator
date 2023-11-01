@@ -11,6 +11,8 @@ import java.io.InputStreamReader
 
 
 class HistoryActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
@@ -19,7 +21,7 @@ class HistoryActivity : AppCompatActivity() {
 
         val listData = readFile()
         // inaczej to wyswietlac trzeba
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listData)
+        val adapter = MyAdapter(this, listData)
         listView.adapter = adapter
 
     }
