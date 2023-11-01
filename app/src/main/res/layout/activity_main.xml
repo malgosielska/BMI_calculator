@@ -151,7 +151,6 @@
         android:layout_width="325dp"
         android:layout_height="169dp"
         android:background="#FAFAFA"
-        android:elevation="20dp"
         app:cardBackgroundColor="@color/light_violet"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

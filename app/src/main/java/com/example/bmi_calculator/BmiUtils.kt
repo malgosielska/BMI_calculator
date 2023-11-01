@@ -1,4 +1,5 @@
 package com.example.bmi_calculator
+
 fun getBmi(item: String?): String {
     val parts = item?.split(", ")
     return parts?.get(0)?.split(": ")?.get(1) ?: ""

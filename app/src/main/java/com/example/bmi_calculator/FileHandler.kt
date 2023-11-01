@@ -8,7 +8,7 @@ import java.io.FileOutputStream
 import java.io.InputStreamReader
 
 
-fun saveToFile(context: Context, bmi: Float, weight: String, height: String, date: String) {
+fun saveToFile(context: Context, bmi: Double, weight: String, height: String, date: String) {
     val file = "history.txt"
     val fileOutputStream: FileOutputStream
     try {

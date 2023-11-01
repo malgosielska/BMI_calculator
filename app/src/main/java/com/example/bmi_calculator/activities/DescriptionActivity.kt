@@ -12,21 +12,21 @@ class DescriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_description)
 
-        val bmi = intent.getStringExtra("bmi")
+        val bmi = intent.getDoubleExtra("bmi", 0.0)
         val type = intent.getStringExtra("type")
         val color = intent.getIntExtra("color", ContextCompat.getColor(this, R.color.light_violet))
-        if (bmi != null && type != null) {
+        if (type != null) {
             display(bmi, type, color)
         }
     }
 
-    private fun display(bmi: String, type: String, color: Int) {
+    private fun display(bmi: Double, type: String, color: Int) {
         val bmiText = findViewById<TextView>(R.id.bmiScoreTV)
         val typeText = findViewById<TextView>(R.id.typeTV)
         val descriptionCardView = findViewById<CardView>(R.id.descriptionCV)
         val descriptionTextView = findViewById<TextView>(R.id.descriptionTV)
 
-        bmiText.text = bmi
+        bmiText.text = bmi.toString()
         typeText.text = type
         descriptionTextView.text = getDescription(type)
         descriptionCardView.setCardBackgroundColor(color)

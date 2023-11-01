@@ -11,31 +11,33 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.bmi_calculator.*
 
 
 class MainActivity : AppCompatActivity() {
-    private var currentColor: Int = R.color.light_violet
-    private var currentMetric: String = ""
 
-//    private var viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        currentMetric = getString(R.string.kg_and_cm) //todo do view model
 
-        calculateBmi() // todo i dont like the way it looks
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+        startObserving()
+
+        setupCalculateBmiClickListener()
+        setupCardViewResultClickListener()
     }
 
-    // ok
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    // ok
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
@@ -45,14 +47,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu_kg -> {
-                currentMetric = getString(R.string.kg_and_cm)
-                changeMetricView()
+                viewModel.currentMetric.value = getString(R.string.kg_and_cm)
                 true
             }
 
             R.id.menu_pounds -> {
-                currentMetric = getString(R.string.lb_and_ft)
-                changeMetricView()
+                viewModel.currentMetric.value = getString(R.string.lb_and_ft)
                 true
             }
 
@@ -66,6 +66,59 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupCardViewResultClickListener() {
+        val cardViewResult = findViewById<CardView>(R.id.resultCV)
+        cardViewResult.setOnClickListener {
+            val intent = Intent(this, DescriptionActivity::class.java)
+            intent.putExtra("bmi", viewModel.currentBmiResult.value)
+            intent.putExtra("type", viewModel.currentBmiType.value)
+            intent.putExtra("color", viewModel.currentColor.value)
+            startActivity(intent)
+        }
+    }
+
+    private fun setupCalculateBmiClickListener() {
+        val calculateButton = findViewById<Button>(R.id.button)
+
+        calculateButton.setOnClickListener {
+            val givenWeight = findViewById<EditText>(R.id.weightET)
+            val givenHeight = findViewById<EditText>(R.id.heightET)
+
+            val heightUnit = findViewById<TextView>(R.id.heightValueTV).text
+            val weightUnit = findViewById<TextView>(R.id.weightValueTV).text
+            val weight = givenWeight.text.toString()
+            val height = givenHeight.text.toString()
+
+            if (checkInputs(this, weight, height)) {
+                val bmi = calculateBmiValue(this, weight, height, viewModel.currentMetric.value)
+                setViewModelValues(bmi)
+                saveToFile(
+                    this,
+                    bmi,
+                    "$weight $weightUnit",
+                    "$height $heightUnit",
+                    getCurrentDate()
+                )
+            }
+        }
+    }
+
+    private fun startObserving() {
+        viewModel.currentMetric.observe(this, Observer {
+            changeMetricView()
+        })
+        viewModel.currentColor.observe(this, Observer {
+            changeCardView()
+        })
+        viewModel.currentBmiType.observe(this, Observer {
+            changeBmiTypeView()
+        })
+        viewModel.currentBmiResult.observe(this, Observer {
+            changeBmiResultView()
+        })
+    }
+
+    // ok
     private fun changeMetricView() {
         val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
         val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
@@ -76,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         givenWeight.setText("")
         givenHeight.setText("")
 
-        if (currentMetric == getString(R.string.lb_and_ft)) {
+        if (viewModel.currentMetric.value == getString(R.string.lb_and_ft)) {
             heightValueTV.text = getString(R.string.ft)
             weightValueTV.text = getString(R.string.lb)
         } else {
@@ -85,61 +138,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // todo cala ta metoda jest dziwna
-    private fun calculateBmi() {
-        val givenWeight = findViewById<EditText>(R.id.weightET)
-        val givenHeight = findViewById<EditText>(R.id.heightET)
-        val calculateButton = findViewById<Button>(R.id.button)
-        val heightValueTV = findViewById<TextView>(R.id.heightValueTV)
-        val weightValueTV = findViewById<TextView>(R.id.weightValueTV)
+    private fun changeCardView() {
+        val cardViewResult = findViewById<CardView>(R.id.resultCV)
+        viewModel.currentColor.value?.let { cardViewResult.setCardBackgroundColor(it) }
+    }
 
-        val currentMetric = heightValueTV.text
+    private fun changeBmiTypeView() {
+        val type = findViewById<TextView>(R.id.descTV)
+        type.text = viewModel.currentBmiType.value
+    }
 
-        calculateButton.setOnClickListener {
-            val weight = givenWeight.text.toString()
-            val height = givenHeight.text.toString()
-
-            if (checkInputs(this, weight, height)) {
-                // todo this should be placed in another Class - it is more about logic
-                var bmi = weight.toFloat() / ((height.toFloat() / 100) * (height.toFloat() / 100))
-                if (currentMetric == getString(R.string.ft)) {
-                    bmi *= 703
-                }
-                bmi = String.format("%.2f", bmi).toFloat()
-
-                val date = getCurrentDate()
-                saveToFile(
-                    this,
-                    bmi,
-                    "$weight ${weightValueTV.text}",
-                    "$height ${heightValueTV.text}",
-                    date
-                )
-                displayResult(bmi)
-            }
-        }
+    private fun changeBmiResultView() {
+        val result = findViewById<TextView>(R.id.resultTV)
+        result.text = viewModel.currentBmiResult.value.toString()
     }
 
     @SuppressLint("ResourceAsColor")
-    private fun displayResult(bmi: Float) {
-        val result = findViewById<TextView>(R.id.resultTV)
-        val type = findViewById<TextView>(R.id.descTV)
-        val cardViewResult = findViewById<CardView>(R.id.resultCV)
-
-        result.text = bmi.toString() //todo to view model
-
-        currentColor = getColor(this, bmi) //todo to view model
-        val typeText = getResult(this, bmi)
-        type.text = typeText //todo to view model
-
-        cardViewResult.setCardBackgroundColor(currentColor)
-
-        cardViewResult.setOnClickListener {
-            val intent = Intent(this, DescriptionActivity::class.java)
-            intent.putExtra("bmi", result.text)
-            intent.putExtra("type", type.text)
-            intent.putExtra("color", currentColor)
-            startActivity(intent)
-        }
+    private fun setViewModelValues(bmi: Double) {
+        viewModel.currentBmiResult.value = bmi
+        viewModel.currentColor.value = getColor(this, bmi)
+        viewModel.currentBmiType.value = getResult(this, bmi)
     }
 }

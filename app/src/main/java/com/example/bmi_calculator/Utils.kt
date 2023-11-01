@@ -9,7 +9,7 @@ import java.util.Date
 import java.util.Locale
 
 
-fun getColor(context: Context, bmi: Float): Int {
+fun getColor(context: Context, bmi: Double): Int {
     return when {
         bmi < 18.5 -> ContextCompat.getColor(context, R.color.under_weight)
         bmi in 18.5..24.99 -> ContextCompat.getColor(context, R.color.normal_weight)
@@ -32,7 +32,8 @@ fun getLastTenMeasurements(measurements: List<String>): List<String> {
         reversedMeasurements
     }
 }
-fun getResult(context: Context, bmi: Float): String {
+
+fun getResult(context: Context, bmi: Double): String {
     return when {
         bmi < 18.5 -> context.getString(R.string.underweight)
         bmi in 18.5..24.99 -> context.getString(R.string.normal_weight)
@@ -58,6 +59,17 @@ fun checkInputs(context: Context, weight: String, height: String): Boolean {
     return true
 }
 
-
-
+fun calculateBmiValue(
+    context: Context,
+    weight: String,
+    height: String,
+    currentMetric: String?
+): Double {
+    val bmi = if (currentMetric == context.getString(R.string.kg_and_cm)) {
+        weight.toDouble() / ((height.toDouble() / 100) * (height.toDouble() / 100))
+    } else {
+        0.4536 * weight.toDouble() / ((30.48 * height.toDouble() / 100) * (30.48 * height.toDouble() / 100))
+    }
+    return String.format("%.2f", bmi).toDouble()
+}
 
