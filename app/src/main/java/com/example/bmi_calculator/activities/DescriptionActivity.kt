@@ -1,11 +1,11 @@
-package com.example.bmi_calculator
+package com.example.bmi_calculator.activities
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import com.example.bmi_calculator.R
 
 class DescriptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,12 +14,13 @@ class DescriptionActivity : AppCompatActivity() {
 
         val bmi = intent.getStringExtra("bmi")
         val type = intent.getStringExtra("type")
+        val color = intent.getIntExtra("color", ContextCompat.getColor(this, R.color.light_violet))
         if (bmi != null && type != null) {
-            display(bmi, type)
+            display(bmi, type, color)
         }
     }
 
-    private fun display(bmi: String, type: String) {
+    private fun display(bmi: String, type: String, color: Int) {
         val bmiText = findViewById<TextView>(R.id.bmiScoreTV)
         val typeText = findViewById<TextView>(R.id.typeTV)
         val descriptionCardView = findViewById<CardView>(R.id.descriptionCV)
@@ -28,7 +29,6 @@ class DescriptionActivity : AppCompatActivity() {
         bmiText.text = bmi
         typeText.text = type
         descriptionTextView.text = getDescription(type)
-        val color = getColor(this, bmi.toFloat())
         descriptionCardView.setCardBackgroundColor(color)
     }
 

@@ -1,11 +1,13 @@
 package com.example.bmi_calculator
 
 import android.content.Context
+import android.opengl.ETC1.getHeight
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 class MyAdapter(context: Context, data: List<String>) :
     ArrayAdapter<String>(context, 0, data) {
@@ -25,34 +27,13 @@ class MyAdapter(context: Context, data: List<String>) :
         val item = getItem(position)
 
         bmi.text = getBmi(item)
-        val curremtColor = getColor(context, bmi.text.toString().toFloat())
-        bmi.setTextColor( curremtColor)
+        val currentColor = getColor(context, bmi.text.toString().toFloat())
+        bmi.setTextColor(currentColor)
 
         dateRow.text = getDate(item)
         weightRow.text = getWeight(item)
         heightRow.text = getHeight(item)
 
         return convertView
-    }
-
-    // todo move this functions somewhere else
-    private fun getBmi(item: String?): String {
-        val parts = item?.split(", ")
-        return parts?.get(0)?.split(": ")?.get(1) ?: ""
-    }
-
-    private fun getWeight(item: String?): String {
-        val parts = item?.split(", ")
-        return parts?.get(1) ?:""
-    }
-
-    private fun getHeight(item: String?): String {
-        val parts = item?.split(", ")
-        return parts?.get(2) ?:""
-    }
-
-    private fun getDate(item: String?): String {
-        val parts = item?.split(", ")
-        return parts?.get(3) ?:""
     }
 }
