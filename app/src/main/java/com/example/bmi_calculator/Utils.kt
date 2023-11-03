@@ -24,7 +24,7 @@ fun getCurrentDate(): String {
     return sdf.format(currentDate)
 }
 
-fun getLastTenMeasurements(measurements: List<String>): List<String> {
+fun getLastTenMeasurements(measurements: List<BMIResult>): List<BMIResult> {
     val reversedMeasurements = measurements.reversed()
     return if (reversedMeasurements.size >= 10) {
         reversedMeasurements.subList(0, 10)

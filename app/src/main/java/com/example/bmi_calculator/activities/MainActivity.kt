@@ -84,20 +84,25 @@ class MainActivity : AppCompatActivity() {
             val givenWeight = findViewById<EditText>(R.id.weightET)
             val givenHeight = findViewById<EditText>(R.id.heightET)
 
-            val heightUnit = findViewById<TextView>(R.id.heightValueTV).text
-            val weightUnit = findViewById<TextView>(R.id.weightValueTV).text
+            val heightUnit = findViewById<TextView>(R.id.heightValueTV).text.toString()
+            val weightUnit = findViewById<TextView>(R.id.weightValueTV).text.toString()
             val weight = givenWeight.text.toString()
             val height = givenHeight.text.toString()
 
             if (checkInputs(this, weight, height)) {
                 val bmi = calculateBmiValue(this, weight, height, viewModel.currentMetric.value)
                 setViewModelValues(bmi)
+                val bmiResult = BMIResult(
+                    bmi,
+                    getCurrentDate(),
+                    weight.toDouble(),
+                    height.toDouble(),
+                    weightUnit,
+                    heightUnit
+                )
                 saveToFile(
                     this,
-                    bmi,
-                    "$weight $weightUnit",
-                    "$height $heightUnit",
-                    getCurrentDate()
+                    bmiResult
                 )
             }
         }

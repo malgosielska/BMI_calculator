@@ -8,13 +8,12 @@ import java.io.FileOutputStream
 import java.io.InputStreamReader
 
 
-fun saveToFile(context: Context, bmi: Double, weight: String, height: String, date: String) {
+fun saveToFile(context: Context, bmiResult: BMIResult) {
     val file = "history.txt"
     val fileOutputStream: FileOutputStream
     try {
         fileOutputStream = context.openFileOutput(file, Context.MODE_APPEND)
-        val lineToSave = "bmi: $bmi, weight: $weight, height: $height, date: $date \n"
-        fileOutputStream.write(lineToSave.toByteArray())
+        fileOutputStream.write(bmiResult.toString().toByteArray())
         fileOutputStream.close()
     } catch (e: FileNotFoundException) {
         e.printStackTrace()
@@ -23,9 +22,9 @@ fun saveToFile(context: Context, bmi: Double, weight: String, height: String, da
     }
 }
 
-fun readFile(context: Context): List<String> {
+fun readFile(context: Context): List<BMIResult> {
     val fileInputStream: FileInputStream
-    val lines = mutableListOf<String>()
+    val results = mutableListOf<BMIResult>()
 
     try {
         fileInputStream = context.openFileInput("history.txt")
@@ -34,7 +33,8 @@ fun readFile(context: Context): List<String> {
         var text: String?
 
         while (bufferedReader.readLine().also { text = it } != null) {
-            lines.add(text ?: "")
+            val result = parseBMIResult(text ?: "")
+            results.add(result)
         }
         fileInputStream.close()
     } catch (e: FileNotFoundException) {
@@ -42,5 +42,37 @@ fun readFile(context: Context): List<String> {
     } catch (e: Exception) {
         e.printStackTrace()
     }
-    return lines
+    return results
 }
+
+fun parseBMIResult(input: String): BMIResult {
+    val parts = input.split(", ")
+    if (parts.size == 4) {
+        val bmiPart = parts[0].split(" ")
+        val bmi = bmiPart[1].toDouble()
+
+        val weightPart = parts[1].split(" ")
+        val weight = weightPart[1].toDouble()
+        val weightMetric = weightPart[2]
+
+        val heightPart = parts[2].split(" ")
+        val height = heightPart[1].toDouble()
+        val heightMetric = heightPart[2]
+
+        val datePart = parts[3].split(" ")
+        val date = datePart[1]
+
+        return BMIResult(
+            value = bmi,
+            date = date,
+            weight = weight,
+            height = height,
+            weightMetric = weightMetric,
+            heightMetric = heightMetric
+        )
+    } else {
+        throw IllegalArgumentException("Error")
+    }
+}
+
+
