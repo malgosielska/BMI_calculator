@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.bmi_calculator.activities.MainActivity">
+
+    <item
+        android:id="@+id/metric"
+        android:icon="@drawable/baseline_square_foot_24"
+        android:title="@string/metric"
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:id="@+id/menu_kg"
+                android:title="@string/kg_and_cm" />
+
+            <item
+                android:id="@+id/menu_pounds"
+                android:title="@string/lb_and_ft" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/baseline_history_24"
+        android:title="@string/history"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about_me"
+        android:title="@string/about_me"
+        app:showAsAction="never" />
+
+</menu>

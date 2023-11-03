@@ -11,4 +11,15 @@
     <string name="enter_weight">Enter weight</string>
     <string name="enter_height">Enter height</string>
     <string name="return_text">Return</string>
+    <string name="metric">Metric</string>
+    <string name="history">History</string>
+    <string name="pounds">pounds</string>
+    <string name="kg_and_cm">kg and cm</string>
+    <string name="lb_and_ft">lb and ft</string>
+    <string name="lb">lb</string>
+    <string name="ft">ft</string>
+    <string name="about_me">About me</string>
+    <string name="malgorzata_sielska">MALGORZATA SIELSKA</string>
+    <string name="about_me_text">Student of Applied Computer Science at the University of Science and Technology in Wroclaw. Currently working at Procter and Gamble as AI Engineering Trainee.</string>
+    <string name="picture_desc">here is my picture</string>
 </resources>
