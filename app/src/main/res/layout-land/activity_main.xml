@@ -11,8 +11,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/heightCV"
-        android:layout_width="313dp"
-        android:layout_height="93dp"
+        android:layout_width="316dp"
+        android:layout_height="77dp"
         app:cardBackgroundColor="@color/light_violet"
         app:cardCornerRadius="20dp"
         app:cardElevation="15dp"
@@ -70,8 +70,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/weightCV"
-        android:layout_width="313dp"
-        android:layout_height="93dp"
+        android:layout_width="321dp"
+        android:layout_height="73dp"
         android:background="#FAFAFA"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/light_violet"
@@ -131,8 +131,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="204dp"
-        android:layout_height="72dp"
+        android:layout_width="185dp"
+        android:layout_height="59dp"
         android:backgroundTint="@color/black"
         android:elevation="40dp"
         android:text="@string/calculate_bmi"
@@ -141,10 +141,10 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06999999" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/resultCV"
@@ -187,8 +187,8 @@
 
     <TextView
         android:id="@+id/instructionsTV"
-        android:layout_width="313dp"
-        android:layout_height="79dp"
+        android:layout_width="357dp"
+        android:layout_height="63dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:gravity="center"
