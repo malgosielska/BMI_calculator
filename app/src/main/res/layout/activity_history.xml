@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/white"
-        android:dividerHeight="20.0sp"
+        android:dividerHeight="@dimen/bigger_text"
         android:scrollbarSize="10dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

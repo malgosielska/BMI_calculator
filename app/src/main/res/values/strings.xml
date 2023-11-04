@@ -24,4 +24,6 @@
     <string name="picture_desc">here is my picture</string>
     <string name="spin">SPIN</string>
     <string name="facts_about_me">Facts about me</string>
+    <string name="instructions">To calculate your BMI please enter values below</string>
+    <string name="main_title">Main title</string>
 </resources>

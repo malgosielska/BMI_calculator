@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_tex">18sp</dimen>
+    <dimen name="normal_tex">18sp</dimen>
+    <dimen name="bigger_text">20sp</dimen>
+    <dimen name="bmi_result_size">60sp</dimen>
+    <dimen name="bmi_desc_size">40sp</dimen>
+    <dimen name="entry_values_size">25sp</dimen>
+    <dimen name="margin">5sp</dimen>
+    <dimen name="small_margin">5sp</dimen>
+    <dimen name="card_view_width">313dp</dimen>
+    <dimen name="card_view_height">93dp</dimen>
+</resources>
