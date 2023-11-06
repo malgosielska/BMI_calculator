@@ -91,9 +91,10 @@
 
             <TextView
                 android:id="@+id/weightTV"
-                android:layout_width="53dp"
-                android:layout_height="19dp"
+                android:layout_width="102dp"
+                android:layout_height="33dp"
                 android:text="@string/weight"
+                android:textSize="@dimen/bigger_text"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
