@@ -22,4 +22,8 @@
     <string name="malgorzata_sielska">MALGORZATA SIELSKA</string>
     <string name="about_me_text">Student of Applied Computer Science at the University of Science and Technology in Wroclaw. Currently working at Procter and Gamble as AI Engineering Trainee.</string>
     <string name="picture_desc">here is my picture</string>
+    <string name="spin">SPIN</string>
+    <string name="facts_about_me">Facts about me</string>
+    <string name="instructions">To calculate your BMI please enter values below</string>
+    <string name="main_title">Main title</string>
 </resources>

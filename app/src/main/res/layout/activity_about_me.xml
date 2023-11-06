@@ -8,43 +8,99 @@
 
     <TextView
         android:id="@+id/nameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="163dp"
+        android:layout_height="79dp"
         android:text="@string/malgorzata_sielska"
-        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textSize="@dimen/bigger_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintStart_toEndOf="@+id/photo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.137" />
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="203dp"
-        android:layout_height="230dp"
+        android:layout_width="181dp"
+        android:layout_height="190dp"
         android:contentDescription="@string/picture_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256"
+        app:layout_constraintVertical_bias="0.038"
         app:srcCompat="@drawable/msielska" />
 
-    <TextView
-        android:id="@+id/about_meTV"
-        android:layout_width="365dp"
-        android:layout_height="84dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="@string/about_me_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="389dp"
+        android:layout_height="457dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.951">
+
+        <ImageView
+            android:id="@+id/ivWheel"
+            android:layout_width="315dp"
+            android:layout_height="277dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="56dp"
+            android:rotation="17"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivTarget"
+            app:layout_constraintVertical_bias="0.183"
+            app:srcCompat="@drawable/wheel" />
+
+        <ImageView
+            android:id="@+id/ivTarget"
+            android:layout_width="35dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="181dp"
+            android:layout_marginEnd="181dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/target" />
+
+        <Button
+            android:id="@+id/btnSpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_violet"
+            android:text="@string/spin"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/ivWheel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.712" />
+
+        <TextView
+            android:id="@+id/factTV"
+            android:layout_width="322dp"
+            android:layout_height="79dp"
+            android:layout_margin="@dimen/small_margin"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:text="@string/facts_about_me"
+            android:textColor="#000000"
+            android:textSize="@dimen/normal_tex"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivWheel"
+            app:layout_constraintVertical_bias="0.786" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

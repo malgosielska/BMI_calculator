@@ -11,8 +11,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/heightCV"
-        android:layout_width="313dp"
-        android:layout_height="93dp"
+        android:layout_width="@dimen/card_view_width"
+        android:layout_height="@dimen/card_view_height"
         app:cardBackgroundColor="@color/light_violet"
         app:cardCornerRadius="20dp"
         app:cardElevation="15dp"
@@ -47,7 +47,7 @@
                 android:ems="10"
                 android:hint="@string/zero"
                 android:inputType="numberDecimal"
-                android:textSize="24sp"
+                android:textSize="@dimen/bigger_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.62"
@@ -70,8 +70,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/weightCV"
-        android:layout_width="313dp"
-        android:layout_height="93dp"
+        android:layout_width="@dimen/card_view_width"
+        android:layout_height="@dimen/card_view_height"
         android:background="#FAFAFA"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/light_violet"
@@ -82,7 +82,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85">
+        app:layout_constraintVertical_bias="0.95">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                 android:ems="10"
                 android:hint="@string/zero"
                 android:inputType="numberDecimal"
-                android:textSize="24sp"
+                android:textSize="@dimen/bigger_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.625"
@@ -131,20 +131,20 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="204dp"
-        android:layout_height="72dp"
+        android:layout_width="185dp"
+        android:layout_height="59dp"
         android:backgroundTint="@color/black"
         android:elevation="40dp"
         android:text="@string/calculate_bmi"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/bigger_text"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06999999" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/resultCV"
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColorHint="#FFDE7C"
-                android:textSize="60sp"
+                android:textSize="@dimen/bmi_result_size"
                 android:textStyle="normal" />
 
             <TextView
@@ -180,26 +180,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="40sp"
+                android:textSize="@dimen/bmi_desc_size"
                 android:textStyle="italic" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/instructionsTV"
-        android:layout_width="313dp"
-        android:layout_height="79dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="@dimen/card_view_width"
+        android:layout_height="@dimen/card_view_height"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:gravity="center"
-        android:text="To calculate your BMI please enter values below"
-        android:textSize="20sp"
+        android:text="@string/instructions"
+        android:textSize="@dimen/bigger_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
