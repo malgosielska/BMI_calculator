@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -14,26 +15,26 @@
 
         <TextView
             android:id="@+id/weightRow"
-            android:layout_width="218dp"
-            android:layout_height="21dp"
+            android:layout_width="217dp"
+            android:layout_height="30dp"
             android:layout_margin="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
-            android:textColor="#000"
+            android:textColor="@color/material_dynamic_neutral30"
             android:textSize="@dimen/small_tex"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.968"
             app:layout_constraintStart_toStartOf="@+id/bmiScoreRow"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.456" />
+            app:layout_constraintVertical_bias="0.575" />
 
         <TextView
             android:id="@+id/heightRow"
             android:layout_width="223dp"
             android:layout_height="28dp"
             android:layout_margin="5dp"
-            android:textColor="#000"
+            android:textColor="@color/material_dynamic_neutral30"
             android:textSize="@dimen/small_tex"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +49,7 @@
             android:layout_width="137dp"
             android:layout_height="80dp"
             android:layout_margin="@dimen/margin"
-            android:textColor="#000"
+            android:textColor="@color/material_dynamic_neutral30"
             android:textSize="@dimen/bigger_text"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +64,7 @@
             android:layout_width="218dp"
             android:layout_height="21dp"
             android:layout_margin="5dp"
-            android:textColor="#000"
+            android:textColor="@color/material_dynamic_neutral30"
             android:textSize="@dimen/small_tex"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
