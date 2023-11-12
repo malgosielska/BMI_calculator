@@ -42,18 +42,8 @@ fun getResult(context: Context, bmi: Double): String {
     }
 }
 
-fun checkInputs(context: Context, weight: String, height: String): Boolean {
-    val result = (context as Activity).findViewById<TextView>(R.id.resultTV)
-    val description = context.findViewById<TextView>(R.id.descTV)
-
-    if (height.isEmpty()) {
-        result.text = context.getString(R.string.incorrect)
-        description.text = context.getString(R.string.enter_height)
-        return false
-    }
-    if (weight.isEmpty()) {
-        result.text = context.getString(R.string.incorrect)
-        description.text = context.getString(R.string.enter_weight)
+fun checkInputs(weight: String, height: String): Boolean {
+    if (height.isEmpty() or weight.isEmpty()) {
         return false
     }
     return true

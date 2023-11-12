@@ -10,5 +10,5 @@ val factsAboutMe = listOf(
     "7. In a future I will be an owner of the pretties coffee shop on Earth.",
     "8. I'm a karaoke superstar in the shower.",
     "9. Certified expert in Netflix marathons..",
-    "10. Legen... wait for it... dary is my life motto."
+    "10. Bella from Beauty & the Beast is my favourite Disney's princess."
 )

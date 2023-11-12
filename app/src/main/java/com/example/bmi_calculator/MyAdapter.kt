@@ -31,9 +31,9 @@ class MyAdapter(context: Context, data: List<BMIResult>) :
             val currentColor = getColor(context, bmi.text.toString().toDouble())
             bmi.setTextColor(currentColor)
 
-            dateRow.text = "Date:" + bmiResult.date
+            dateRow.text = "Date: " + bmiResult.date
             weightRow.text = "Weight: " + bmiResult.weight.toString() + " " + bmiResult.weightMetric
-            heightRow.text = "Height:" + bmiResult.height.toString() + " " + bmiResult.heightMetric
+            heightRow.text = "Height: " + bmiResult.height.toString() + " " + bmiResult.heightMetric
         }
         return convertView
     }

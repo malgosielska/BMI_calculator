@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bmi_calculator.*
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             val weight = givenWeight.text.toString()
             val height = givenHeight.text.toString()
 
-            if (checkInputs(this, weight, height)) {
+            if (checkInputs(weight, height)) {
                 val bmi = calculateBmiValue(this, weight, height, viewModel.currentMetric.value)
                 setViewModelValues(bmi)
                 val bmiResult = BMIResult(
@@ -104,6 +105,8 @@ class MainActivity : AppCompatActivity() {
                     this,
                     bmiResult
                 )
+            } else {
+                setIncorrectViewModelValues()
             }
         }
     }
@@ -163,5 +166,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.currentBmiResult.value = bmi
         viewModel.currentColor.value = getColor(this, bmi)
         viewModel.currentBmiType.value = getResult(this, bmi)
+    }
+
+    private fun setIncorrectViewModelValues(){
+        viewModel.currentBmiResult.value = null
+        viewModel.currentBmiType.value = "Enter correct values"
+        viewModel.currentColor.value = ContextCompat.getColor(this, R.color.light_violet)
     }
 }
